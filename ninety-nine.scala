@@ -34,7 +34,7 @@ def compress(list:List[Any]):List[Any] = list match {
   case Nil => Nil
 }
 
-// P09 (**) Pack consecutive duplicates of list elements into sublists.
+// P09 Pack consecutive duplicates of list elements into sublists.
 def pack(list:List[Any]):List[List[Any]] = list match {
   case (head:List[Any])::next::tail =>
     if (head(0) == next)
