@@ -37,7 +37,7 @@ def compress[T](list: List[T]): List[T] = list match {
 // P09 Pack consecutive duplicates of list elements into sublists.
 def pack[T](list: List[T]): List[List[T]] = {
 
-  def packImpl(l: List[T], r:List[List[T]]): List[List[T]] =
+  def packImpl(l: List[T], r: List[List[T]]): List[List[T]] =
     l match {
       case head :: tail if head == r.last.head => packImpl(tail, r.init :+ (r.last :+ head))
       case head :: tail => packImpl(tail, r :+ List(head))
@@ -54,3 +54,9 @@ def pack[T](list: List[T]): List[List[T]] = {
 def encode[T](list: List[T]): List[(Int, T)] = pack(list) map (l => (l.length, l.head))
 
 // P11 Modified run-length encoding.
+def encodeModified[T](list: List[T]): List[Any] = {
+  encode(list) map {
+    case (1, value) => value
+    case (count, value) => (count, value)
+  }
+}
