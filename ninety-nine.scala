@@ -24,7 +24,7 @@ def flatten(list: List[Any]): List[Any] = list match {
 }
 
 // P08 Eliminate consecutive duplicates of list elements.
-def compress(list: List[Any]): List[Any] = list match {
+def compress(list: List[Symbol]): List[Symbol] = list match {
   case head :: next :: tail =>
     if (head == next)
       compress(next :: tail)
@@ -35,23 +35,22 @@ def compress(list: List[Any]): List[Any] = list match {
 }
 
 // P09 Pack consecutive duplicates of list elements into sublists.
-def pack(list: List[Any]): List[List[Any]] = {
-  list match {
-    case (head: List[Any]) :: next :: tail =>
-      if (head(0) == next)
-        pack((head :+ next) :: tail)
-      else
-        head :: pack(next :: tail)
-    case (head:List[Any]) :: Nil => List(head)
-    case head :: next :: tail =>
-      if (head == next)
-        pack(List(head, next) :: tail)
-      else
-        List(head) :: pack(next :: tail)
-    case head :: Nil => List(List(head))
-    case Nil => Nil
-  }
+def pack(list: List[Any]): List[List[Any]] = list match {
+  case (head: List[Any]) :: next :: tail =>
+    if (head(0) == next)
+      pack((head :+ next) :: tail)
+    else
+      head :: pack(next :: tail)
+  case (head: List[Any]) :: Nil => List(head)
+  case head :: next :: tail =>
+    if (head == next)
+      pack(List(head, next) :: tail)
+    else
+      List(head) :: pack(next :: tail)
+  case head :: Nil => List(List(head))
+  case Nil => Nil
 }
+
 
 // P10 Run-length encoding of a list.
 def encode(list: List[Any]): List[(Int, Any)] = pack(list) map (symbols => (symbols.length, symbols(0)))
