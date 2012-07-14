@@ -60,3 +60,9 @@ def encodeModified[T](list: List[T]): List[Any] = {
     case (count, value) => (count, value)
   }
 }
+
+// P12 Decode a run-length encoded list.
+def decode[T](list: List[(Int, T)]): List[T] = list match {
+  case (c, v) :: tail => List.fill(c)(v) ::: decode(tail)
+  case Nil => Nil
+}
