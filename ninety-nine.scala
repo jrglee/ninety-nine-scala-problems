@@ -66,3 +66,11 @@ def decode[T](list: List[(Int, T)]): List[T] = list match {
   case (c, v) :: tail => List.fill(c)(v) ::: decode(tail)
   case Nil => Nil
 }
+
+// P13 Run-length encoding of a list (direct solution).
+def encodeDirect[T](list: List[T]): List[(Int, T)] = list match {
+  case head :: tail =>
+    val count: Int = 1 + (tail takeWhile (_ == head) length)
+    (count, head) :: encodeDirect(tail.drop(count))
+  case Nil => Nil
+}
