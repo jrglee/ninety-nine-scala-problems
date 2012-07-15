@@ -92,3 +92,9 @@ def split[T](n: Int, list: List[T]): (List[T], List[T]) = list match {
 }
 
 // P18 Extract a slice from a list.
+def slice[T](from:Int, to:Int, list:List[T]): List[T] = list match {
+  case l if l.length >= to => l.slice(from, to)
+  case l if l.length >= from => l.slice(from, l.length)
+  case l if l.length <= from => List()
+  case l => l
+}
