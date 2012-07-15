@@ -86,3 +86,9 @@ def duplicateN[T](times: Int, list: List[T]): List[T] = list match {
   case head :: tail => List.fill(times)(head) ::: duplicate(tail)
   case Nil => Nil
 }
+
+// P16 Drop every Nth element from a list.
+def drop[T](n: Int, list: List[T]): List[T] = list match {
+  case l if l.length >= n => l.take(n - 1) ::: drop(n, l.drop(n))
+  case tail => tail
+}
