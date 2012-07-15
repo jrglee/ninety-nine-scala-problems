@@ -80,3 +80,9 @@ def duplicate[T](list: List[T]): List[T] = list match {
   case head :: tail => List.fill(2)(head) ::: duplicate(tail)
   case Nil => Nil
 }
+
+// P15 Duplicate the elements of a list a given number of times.
+def duplicateN[T](times: Int, list: List[T]): List[T] = list match {
+  case head :: tail => List.fill(times)(head) ::: duplicate(tail)
+  case Nil => Nil
+}
