@@ -74,3 +74,9 @@ def encodeDirect[T](list: List[T]): List[(Int, T)] = list match {
     (count, head) :: encodeDirect(tail.drop(count))
   case Nil => Nil
 }
+
+// P14 Duplicate the elements of a list.
+def duplicate[T](list: List[T]): List[T] = list match {
+  case head :: tail => List.fill(2)(head) ::: duplicate(tail)
+  case Nil => Nil
+}
