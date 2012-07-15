@@ -84,3 +84,9 @@ def drop[T](n: Int, list: List[T]): List[T] = list match {
   case l if l.length >= n => l.take(n - 1) ::: drop(n, l.drop(n))
   case tail => tail
 }
+
+// P17 Split a list into two parts.
+def split[T](n: Int, list: List[T]): (List[T], List[T]) = list match {
+  case l if l.length >= n => (l.take(n), l.drop(n))
+  case tail => (tail, List())
+}
