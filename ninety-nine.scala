@@ -75,7 +75,7 @@ def duplicate[T](list: List[T]): List[T] = list match {
 
 // P15 Duplicate the elements of a list a given number of times.
 def duplicateN[T](times: Int, list: List[T]): List[T] = list match {
-  case head :: tail => List.fill(times)(head) ::: duplicate(tail)
+  case head :: tail => List.fill(times)(head) ::: duplicateN(times, tail)
   case Nil => Nil
 }
 
@@ -90,3 +90,5 @@ def split[T](n: Int, list: List[T]): (List[T], List[T]) = list match {
   case l if l.length >= n => (l.take(n), l.drop(n))
   case tail => (tail, List())
 }
+
+// P18 Extract a slice from a list.
