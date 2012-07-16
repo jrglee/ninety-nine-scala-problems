@@ -92,9 +92,16 @@ def split[T](n: Int, list: List[T]): (List[T], List[T]) = list match {
 }
 
 // P18 Extract a slice from a list.
-def slice[T](from:Int, to:Int, list:List[T]): List[T] = list match {
+def slice[T](from: Int, to: Int, list: List[T]): List[T] = list match {
   case l if l.length >= to => l.slice(from, to)
   case l if l.length >= from => l.slice(from, l.length)
   case l if l.length <= from => List()
   case l => l
+}
+
+// P19 Rotate a list N places to the left.
+def rotate[T](times: Int, list: List[T]): List[T] = times match {
+  case n if n > 0 => rotate(n - 1, list.tail :+ list.head)
+  case n if n < 0 => rotate(n + 1, list.last :: list.init)
+  case n => list
 }
