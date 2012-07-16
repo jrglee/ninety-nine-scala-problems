@@ -136,3 +136,15 @@ def lotto(n: Int, max: Int): List[Int] = randomSelect(n, range(1, max))
 
 // P25 Generate a random permutation of the elements of a list.
 def randomPermute[T](list: List[T]): List[T] = randomSelect(list.length, list)
+
+// P26 Generate the combinations of K distinct objects chosen from the N elements of a list.
+// Note: the easy solution is list.combinations(size).toList
+def combinations[T](size: Int, list: List[T]): List[List[T]] = size match {
+  case n if n > 1 =>
+    var result: List[List[T]] = List()
+    for (i <- 0 to list.length - size) {
+      combinations(n - 1, list.drop(i + 1)) foreach (result :+= list(i) :: _)
+    }
+    result
+  case 1 => list map (List(_))
+}
