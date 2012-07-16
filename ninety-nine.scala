@@ -105,3 +105,15 @@ def rotate[T](times: Int, list: List[T]): List[T] = times match {
   case n if n < 0 => rotate(n + 1, list.last :: list.init)
   case n => list
 }
+
+// P20 Remove the Kth element from a list.
+def removeAt[T](index: Int, list: List[T]): (List[T], T) = {
+  val (start, end) = list.splitAt(index)
+  (start ::: end.tail, list(index))
+}
+
+// P21 Insert an element at a given position into a list.
+def insertAt[T](value:T, index:Int, list:List[T]) : List[T] = {
+  val (start, end) = list.splitAt(index)
+  start ::: List(value) ::: end
+}
