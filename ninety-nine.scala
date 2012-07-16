@@ -117,3 +117,6 @@ def insertAt[T](value:T, index:Int, list:List[T]) : List[T] = {
   val (start, end) = list.splitAt(index)
   start ::: List(value) ::: end
 }
+
+// P22 Create a list containing all integers within a given range.
+def range(start:Int, end:Int):List[Int] = start to end toList
