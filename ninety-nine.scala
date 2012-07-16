@@ -130,3 +130,6 @@ def randomSelect[T](n: Int, list: List[T]): List[T] = n match {
     e :: randomSelect(n - 1, sublist)
   case 0 => List()
 }
+
+// P24 (*) Lotto: Draw N different random numbers from the set 1..M.
+def lotto(n: Int, max: Int): List[Int] = randomSelect(n, range(1, max))
