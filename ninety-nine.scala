@@ -1,3 +1,5 @@
+import util.Random
+
 // P01 Find the last element of a list.
 def last(list: List[Int]) = list.last
 
@@ -113,10 +115,18 @@ def removeAt[T](index: Int, list: List[T]): (List[T], T) = {
 }
 
 // P21 Insert an element at a given position into a list.
-def insertAt[T](value:T, index:Int, list:List[T]) : List[T] = {
+def insertAt[T](value: T, index: Int, list: List[T]): List[T] = {
   val (start, end) = list.splitAt(index)
   start ::: List(value) ::: end
 }
 
 // P22 Create a list containing all integers within a given range.
-def range(start:Int, end:Int):List[Int] = start to end toList
+def range(start: Int, end: Int): List[Int] = start to end toList
+
+// P23 Extract a given number of randomly selected elements from a list.
+def randomSelect[T](n: Int, list: List[T]): List[T] = n match {
+  case n if n > 0 =>
+    val (sublist, e) = removeAt(Random.nextInt(list.length), list)
+    e :: randomSelect(n - 1, sublist)
+  case 0 => List()
+}
