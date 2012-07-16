@@ -131,5 +131,8 @@ def randomSelect[T](n: Int, list: List[T]): List[T] = n match {
   case 0 => List()
 }
 
-// P24 (*) Lotto: Draw N different random numbers from the set 1..M.
+// P24 Lotto: Draw N different random numbers from the set 1..M.
 def lotto(n: Int, max: Int): List[Int] = randomSelect(n, range(1, max))
+
+// P25 Generate a random permutation of the elements of a list.
+def randomPermute[T](list: List[T]): List[T] = randomSelect(list.length, list)
