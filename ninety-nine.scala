@@ -150,6 +150,8 @@ def combinations[T](size: Int, list: List[T]): List[List[T]] = size match {
 }
 
 // P27 Group the elements of a set into disjoint subsets.
+
+// a)
 def group3[T](list: List[T]): List[List[List[T]]] = {
   var result: List[List[List[T]]] = List()
   combinations(2, list) foreach {
@@ -165,6 +167,7 @@ def group3[T](list: List[T]): List[List[List[T]]] = {
   result
 }
 
+// b)
 def group[T](pattern: List[Int], list: List[T]): List[List[List[T]]] = pattern match {
   case head :: Nil => combinations(head, list) map (l => List(l))
   case head :: tail =>
@@ -176,3 +179,7 @@ def group[T](pattern: List[Int], list: List[T]): List[List[List[T]]] = pattern m
     result
   case Nil => Nil
 }
+
+// P28 Sorting a list of lists according to length of sublists.
+// a)
+def lsort[T](list: List[List[T]]): List[List[T]] = list sortBy (x => x.length)
