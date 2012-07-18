@@ -183,3 +183,11 @@ def group[T](pattern: List[Int], list: List[T]): List[List[List[T]]] = pattern m
 // P28 Sorting a list of lists according to length of sublists.
 // a)
 def lsort[T](list: List[List[T]]): List[List[T]] = list sortBy (x => x.length)
+
+// b)
+def lsortFreq[T](list: List[List[T]]): List[List[T]] = {
+  val frequencyMap = lsort(list) groupBy (_.length)
+  var result: List[List[T]] = List()
+  frequencyMap.keySet.toList.sorted foreach (freqs => result :::= (list filter (_.length == freqs)))
+  result
+}
