@@ -152,7 +152,7 @@ def combinations[T](size: Int, list: List[T]): List[List[T]] = size match {
 // P27 Group the elements of a set into disjoint subsets.
 def group3[T](list: List[T]): List[List[List[T]]] = {
   var result: List[List[List[T]]] = List()
-  combinations(2, list).foreach {
+  combinations(2, list) foreach {
     g2 =>
       combinations(3, (list diff g2)) foreach {
         g3 =>
@@ -163,4 +163,16 @@ def group3[T](list: List[T]): List[List[List[T]]] = {
       }
   }
   result
+}
+
+def group[T](pattern: List[Int], list: List[T]): List[List[List[T]]] = pattern match {
+  case head :: Nil => combinations(head, list) map (l => List(l))
+  case head :: tail =>
+    var result: List[List[List[T]]] = List()
+    combinations(head, list) foreach {
+      g =>
+        group(tail, (list diff g)) foreach (l => result :+= g :: l)
+    }
+    result
+  case Nil => Nil
 }
