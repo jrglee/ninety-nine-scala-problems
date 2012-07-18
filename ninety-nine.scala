@@ -148,3 +148,19 @@ def combinations[T](size: Int, list: List[T]): List[List[T]] = size match {
     result
   case 1 => list map (List(_))
 }
+
+// P27 Group the elements of a set into disjoint subsets.
+def group3[T](list: List[T]): List[List[List[T]]] = {
+  var result: List[List[List[T]]] = List()
+  combinations(2, list).foreach {
+    g2 =>
+      combinations(3, (list diff g2)) foreach {
+        g3 =>
+          combinations(4, list diff (g2 ::: g3)) foreach {
+            g4 =>
+              result :+= List(g2, g3, g4)
+          }
+      }
+  }
+  result
+}
