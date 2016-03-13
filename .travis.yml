@@ -1,0 +1,7 @@
+language: java
+script: ./gradlew test
+
+sudo: false
+
+jdk:
+  - oraclejdk8
