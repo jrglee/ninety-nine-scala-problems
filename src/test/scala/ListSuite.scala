@@ -95,7 +95,7 @@ class ListSuite extends FunSuite with Matchers {
     val list = List('a, 'b, 'c, 'd, 'f, 'g, 'h)
     val selected = lists.randomSelect(3, list)
 
-    selected should have length (3)
+    selected should have length 3
     selected.forall(list.contains) shouldBe true
     selected.distinct shouldEqual selected
   }
@@ -107,11 +107,14 @@ class ListSuite extends FunSuite with Matchers {
     every(numbers) should be <= 49
   }
 
-  ignore("P25 (*) Generate a random permutation of the elements of a list.") {
-    lists.randomPermute(List('a, 'b, 'c, 'd, 'e, 'f)) shouldEqual List('b, 'a, 'd, 'c, 'e, 'f)
+  test("P25 (*) Generate a random permutation of the elements of a list.") {
+    val list = List('a, 'b, 'c, 'd, 'e, 'f)
+    val permute = lists.randomPermute(list)
+
+    permute.sortWith(_.name < _.name) shouldEqual list.sortWith(_.name < _.name)
   }
 
-  ignore("P26 (**) Generate the combinations of K distinct objects chosen from the N elements of a list.") {
-    lists.combinations(3, List('a, 'b, 'c, 'd, 'e, 'f)) should contain(List(List('a, 'b, 'c), List('a, 'b, 'd), List('a, 'b, 'e)))
+  test("P26 (**) Generate the combinations of K distinct objects chosen from the N elements of a list.") {
+    lists.combinations(3, List('a, 'b, 'c, 'd, 'e, 'f)) should contain allOf(List('a, 'b, 'c), List('a, 'b, 'd), List('a, 'b, 'e))
   }
 }
