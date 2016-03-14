@@ -117,4 +117,9 @@ class ListSuite extends FunSuite with Matchers {
   test("P26 (**) Generate the combinations of K distinct objects chosen from the N elements of a list.") {
     lists.combinations(3, List('a, 'b, 'c, 'd, 'e, 'f)) should contain allOf(List('a, 'b, 'c), List('a, 'b, 'd), List('a, 'b, 'e))
   }
+
+  test("P27 (**) Group the elements of a set into disjoint subsets.") {
+    lists.group3(List("Aldo", "Beat", "Carla", "David", "Evi", "Flip", "Gary", "Hugo", "Ida")) should contain(List(List("Aldo", "Beat"), List("Carla", "David", "Evi"), List("Flip", "Gary", "Hugo", "Ida")))
+    lists.group(List(2, 2, 5), List("Aldo", "Beat", "Carla", "David", "Evi", "Flip", "Gary", "Hugo", "Ida")) should contain(List(List("Aldo", "Beat"), List("Carla", "David"), List("Evi", "Flip", "Gary", "Hugo", "Ida")))
+  }
 }
