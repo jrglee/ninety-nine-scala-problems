@@ -1,4 +1,4 @@
-# 99 Problems in Scala
+# 99 Scala Problems
 
 [![Build Status](https://travis-ci.org/jrglee/ninety-nine-scala-problems.svg?branch=master)](https://travis-ci.org/jrglee/ninety-nine-scala-problems)
 
