@@ -156,8 +156,10 @@ package object lists {
 
   def lsortFreq[T](list: List[List[T]]): List[List[T]] = {
     val frequencyMap = lsort(list) groupBy (_.length)
-    var result: List[List[T]] = List()
-    frequencyMap.keySet.toList.sorted foreach (freqs => result :::= (list filter (_.length == freqs)))
-    result
+    def countEntries(index: Int) = frequencyMap(index).length
+
+    frequencyMap.keySet.toList
+      .sortWith((a, b) => countEntries(a) < countEntries(b))
+      .flatMap(frequencyMap)
   }
 }
